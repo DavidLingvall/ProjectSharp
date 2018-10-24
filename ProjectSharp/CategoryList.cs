@@ -29,6 +29,8 @@ namespace ProjectSharp
             Categorys.Add(NewCategory);
         }
 
+        
+
 
     }
 

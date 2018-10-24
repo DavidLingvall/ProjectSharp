@@ -12,6 +12,9 @@ namespace ProjectSharp
 {
     public partial class Form1 : Form
     {
+        ListViewItem ListViewItem = new ListViewItem();
+        CategoryList CategoryList = new CategoryList();
+
         public Form1()
         {
             InitializeComponent();
@@ -19,28 +22,27 @@ namespace ProjectSharp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-            var ListViewItem = new ListViewItem();
-            var CategoryList = new CategoryList();
-
-            CategoryList.AddCategoryToListTest();
-
-
-            foreach (var x in CategoryList.Categorys)
-            {
-                LvCategory.Items.Add(x.Name);
-            }
-            
+            FillListViewWithCategorys();
         }
+
+        private void FillListViewWithCategorys()
+        {
+            CategoryList.AddCategoryToListTest();
+            foreach (var category in CategoryList.Categorys)
+            {
+
+                LvCategory.Items.Add(category.Name);
+            }
+        } 
 
         private void LvCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void BtnAddCategory_Click(object sender, EventArgs e)
         {
-
+            CategoryList.AddCategoryToList(new Category(TbAddCategory.Text));
             LvCategory.Items.Add(TbAddCategory.Text);
         }
 
