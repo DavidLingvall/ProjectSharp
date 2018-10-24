@@ -21,5 +21,10 @@ namespace ProjectSharp
         {
 
         }
+
+        private void BtnRemoveFeed_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

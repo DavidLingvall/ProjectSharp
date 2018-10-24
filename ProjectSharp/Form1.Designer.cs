@@ -124,6 +124,7 @@
             this.BtnRemoveFeed.TabIndex = 4;
             this.BtnRemoveFeed.Text = "Ta bort";
             this.BtnRemoveFeed.UseVisualStyleBackColor = true;
+            this.BtnRemoveFeed.Click += new System.EventHandler(this.BtnRemoveFeed_Click);
             // 
             // BtnAddFeed
             // 
