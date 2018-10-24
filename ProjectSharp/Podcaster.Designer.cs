@@ -59,9 +59,10 @@
             this.tabControl1.Controls.Add(this.Kategorier);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(518, 475);
+            this.tabControl1.Size = new System.Drawing.Size(388, 386);
             this.tabControl1.TabIndex = 1;
             // 
             // Podcasts
@@ -76,51 +77,57 @@
             this.Podcasts.Controls.Add(this.TbUrl);
             this.Podcasts.Controls.Add(this.CbCategory);
             this.Podcasts.Controls.Add(this.LvFeed);
-            this.Podcasts.Location = new System.Drawing.Point(4, 25);
+            this.Podcasts.Location = new System.Drawing.Point(4, 22);
+            this.Podcasts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Podcasts.Name = "Podcasts";
-            this.Podcasts.Padding = new System.Windows.Forms.Padding(3);
-            this.Podcasts.Size = new System.Drawing.Size(510, 446);
+            this.Podcasts.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Podcasts.Size = new System.Drawing.Size(380, 360);
             this.Podcasts.TabIndex = 0;
             this.Podcasts.Text = "Podcasts";
             // 
             // CbUpdateInterval
             // 
             this.CbUpdateInterval.FormattingEnabled = true;
-            this.CbUpdateInterval.Location = new System.Drawing.Point(316, 188);
+            this.CbUpdateInterval.Location = new System.Drawing.Point(237, 153);
+            this.CbUpdateInterval.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CbUpdateInterval.Name = "CbUpdateInterval";
-            this.CbUpdateInterval.Size = new System.Drawing.Size(181, 24);
+            this.CbUpdateInterval.Size = new System.Drawing.Size(137, 21);
             this.CbUpdateInterval.TabIndex = 8;
             // 
             // TbDescription
             // 
-            this.TbDescription.Location = new System.Drawing.Point(316, 218);
+            this.TbDescription.Location = new System.Drawing.Point(237, 177);
+            this.TbDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TbDescription.Multiline = true;
             this.TbDescription.Name = "TbDescription";
-            this.TbDescription.Size = new System.Drawing.Size(181, 217);
+            this.TbDescription.Size = new System.Drawing.Size(137, 177);
             this.TbDescription.TabIndex = 7;
             // 
             // LblEpisodes
             // 
             this.LblEpisodes.AutoSize = true;
-            this.LblEpisodes.Location = new System.Drawing.Point(4, 195);
+            this.LblEpisodes.Location = new System.Drawing.Point(3, 158);
+            this.LblEpisodes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblEpisodes.Name = "LblEpisodes";
-            this.LblEpisodes.Size = new System.Drawing.Size(46, 17);
+            this.LblEpisodes.Size = new System.Drawing.Size(35, 13);
             this.LblEpisodes.TabIndex = 6;
             this.LblEpisodes.Text = "label1";
             // 
             // LvEpisodes
             // 
-            this.LvEpisodes.Location = new System.Drawing.Point(6, 218);
+            this.LvEpisodes.Location = new System.Drawing.Point(4, 177);
+            this.LvEpisodes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.LvEpisodes.Name = "LvEpisodes";
-            this.LvEpisodes.Size = new System.Drawing.Size(304, 217);
+            this.LvEpisodes.Size = new System.Drawing.Size(229, 177);
             this.LvEpisodes.TabIndex = 5;
             this.LvEpisodes.UseCompatibleStateImageBehavior = false;
             // 
             // BtnRemoveFeed
             // 
-            this.BtnRemoveFeed.Location = new System.Drawing.Point(220, 186);
+            this.BtnRemoveFeed.Location = new System.Drawing.Point(165, 151);
+            this.BtnRemoveFeed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnRemoveFeed.Name = "BtnRemoveFeed";
-            this.BtnRemoveFeed.Size = new System.Drawing.Size(90, 23);
+            this.BtnRemoveFeed.Size = new System.Drawing.Size(68, 19);
             this.BtnRemoveFeed.TabIndex = 4;
             this.BtnRemoveFeed.Text = "Ta bort";
             this.BtnRemoveFeed.UseVisualStyleBackColor = true;
@@ -128,27 +135,30 @@
             // 
             // BtnAddFeed
             // 
-            this.BtnAddFeed.Location = new System.Drawing.Point(124, 186);
+            this.BtnAddFeed.Location = new System.Drawing.Point(93, 151);
+            this.BtnAddFeed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnAddFeed.Name = "BtnAddFeed";
-            this.BtnAddFeed.Size = new System.Drawing.Size(90, 23);
+            this.BtnAddFeed.Size = new System.Drawing.Size(68, 19);
             this.BtnAddFeed.TabIndex = 3;
             this.BtnAddFeed.Text = "Lägg till";
             this.BtnAddFeed.UseVisualStyleBackColor = true;
             // 
             // TbUrl
             // 
-            this.TbUrl.Location = new System.Drawing.Point(6, 158);
+            this.TbUrl.Location = new System.Drawing.Point(4, 128);
+            this.TbUrl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TbUrl.Name = "TbUrl";
-            this.TbUrl.Size = new System.Drawing.Size(307, 22);
+            this.TbUrl.Size = new System.Drawing.Size(231, 20);
             this.TbUrl.TabIndex = 2;
             this.TbUrl.Text = "http://";
             // 
             // CbCategory
             // 
             this.CbCategory.FormattingEnabled = true;
-            this.CbCategory.Location = new System.Drawing.Point(316, 158);
+            this.CbCategory.Location = new System.Drawing.Point(237, 128);
+            this.CbCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CbCategory.Name = "CbCategory";
-            this.CbCategory.Size = new System.Drawing.Size(181, 24);
+            this.CbCategory.Size = new System.Drawing.Size(137, 21);
             this.CbCategory.TabIndex = 1;
             // 
             // LvFeed
@@ -158,9 +168,10 @@
             this.Title,
             this.Interval,
             this.Category});
-            this.LvFeed.Location = new System.Drawing.Point(6, 6);
+            this.LvFeed.Location = new System.Drawing.Point(6, 5);
+            this.LvFeed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.LvFeed.Name = "LvFeed";
-            this.LvFeed.Size = new System.Drawing.Size(491, 146);
+            this.LvFeed.Size = new System.Drawing.Size(369, 119);
             this.LvFeed.TabIndex = 0;
             this.LvFeed.UseCompatibleStateImageBehavior = false;
             this.LvFeed.View = System.Windows.Forms.View.Details;
@@ -192,53 +203,61 @@
             this.Kategorier.Controls.Add(this.BtnRemoveCategory);
             this.Kategorier.Controls.Add(this.BtnAddCategory);
             this.Kategorier.Controls.Add(this.LvCategory);
-            this.Kategorier.Location = new System.Drawing.Point(4, 25);
+            this.Kategorier.Location = new System.Drawing.Point(4, 22);
+            this.Kategorier.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Kategorier.Name = "Kategorier";
-            this.Kategorier.Padding = new System.Windows.Forms.Padding(3);
-            this.Kategorier.Size = new System.Drawing.Size(510, 446);
+            this.Kategorier.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Kategorier.Size = new System.Drawing.Size(380, 360);
             this.Kategorier.TabIndex = 1;
             this.Kategorier.Text = "Kategorier";
             // 
             // TbAddCategory
             // 
-            this.TbAddCategory.Location = new System.Drawing.Point(8, 201);
+            this.TbAddCategory.Location = new System.Drawing.Point(6, 163);
+            this.TbAddCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TbAddCategory.Name = "TbAddCategory";
-            this.TbAddCategory.Size = new System.Drawing.Size(136, 22);
+            this.TbAddCategory.Size = new System.Drawing.Size(103, 20);
             this.TbAddCategory.TabIndex = 12;
             // 
             // BtnRemoveCategory
             // 
-            this.BtnRemoveCategory.Location = new System.Drawing.Point(405, 201);
+            this.BtnRemoveCategory.Location = new System.Drawing.Point(304, 163);
+            this.BtnRemoveCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnRemoveCategory.Name = "BtnRemoveCategory";
-            this.BtnRemoveCategory.Size = new System.Drawing.Size(90, 23);
+            this.BtnRemoveCategory.Size = new System.Drawing.Size(68, 19);
             this.BtnRemoveCategory.TabIndex = 11;
             this.BtnRemoveCategory.Text = "Ta bort";
             this.BtnRemoveCategory.UseVisualStyleBackColor = true;
+            this.BtnRemoveCategory.Click += new System.EventHandler(this.BtnRemoveCategory_Click);
             // 
             // BtnAddCategory
             // 
-            this.BtnAddCategory.Location = new System.Drawing.Point(306, 201);
+            this.BtnAddCategory.Location = new System.Drawing.Point(230, 163);
+            this.BtnAddCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnAddCategory.Name = "BtnAddCategory";
-            this.BtnAddCategory.Size = new System.Drawing.Size(90, 23);
+            this.BtnAddCategory.Size = new System.Drawing.Size(68, 19);
             this.BtnAddCategory.TabIndex = 10;
             this.BtnAddCategory.Text = "Lägg till";
             this.BtnAddCategory.UseVisualStyleBackColor = true;
+            this.BtnAddCategory.Click += new System.EventHandler(this.BtnAddCategory_Click);
             // 
             // LvCategory
             // 
-            this.LvCategory.Location = new System.Drawing.Point(6, 6);
+            this.LvCategory.Location = new System.Drawing.Point(4, 5);
+            this.LvCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.LvCategory.Name = "LvCategory";
-            this.LvCategory.Size = new System.Drawing.Size(489, 189);
+            this.LvCategory.Size = new System.Drawing.Size(368, 154);
             this.LvCategory.TabIndex = 7;
             this.LvCategory.UseCompatibleStateImageBehavior = false;
+            this.LvCategory.SelectedIndexChanged += new System.EventHandler(this.LvCategory_SelectedIndexChanged);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(518, 475);
+            this.ClientSize = new System.Drawing.Size(388, 386);
             this.Controls.Add(this.tabControl1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
