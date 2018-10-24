@@ -46,8 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Kategorier.cs" />
+    <Compile Include="CategoryList.cs" />
+    <Compile Include="Category.cs" />
     <Compile Include="Podcaster.cs">
       <SubType>Form</SubType>
     </Compile>

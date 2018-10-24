@@ -19,11 +19,16 @@ namespace ProjectSharp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
             var ListViewItem = new ListViewItem();
-            string[] KategoriLista = new string[] { "Mystery", "Humor", "Documentury" };
-            foreach (var x in KategoriLista)
+            var CategoryList = new CategoryList();
+
+            CategoryList.AddCategoryToListTest();
+
+
+            foreach (var x in CategoryList.Categorys)
             {
-                LvCategory.Items.Add(x);
+                LvCategory.Items.Add(x.Name);
             }
             
         }
@@ -35,6 +40,7 @@ namespace ProjectSharp
 
         private void BtnAddCategory_Click(object sender, EventArgs e)
         {
+
             LvCategory.Items.Add(TbAddCategory.Text);
         }
 
