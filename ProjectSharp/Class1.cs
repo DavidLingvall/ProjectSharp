@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectSharp
 {
-    class KategoriList List<Kategorier>
+    class KategoriList : List<Kategorier>
     {
     }
 }
