@@ -49,9 +49,7 @@
     <Compile Include="BLL\Episode.cs" />
     <Compile Include="BLL\PodcastList.cs" />
     <Compile Include="BLL\Podcasts.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="DAL\FileHandler.cs" />
-    <Compile Include="Kategorier.cs" />
     <Compile Include="Podcaster.cs">
       <SubType>Form</SubType>
     </Compile>
