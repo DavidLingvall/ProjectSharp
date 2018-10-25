@@ -46,8 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CategoryList.cs" />
-    <Compile Include="Category.cs" />
+    <Compile Include="BLL\Episode.cs" />
+    <Compile Include="BLL\PodcastList.cs" />
+    <Compile Include="BLL\Podcasts.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="DAL\FileHandler.cs" />
+    <Compile Include="Kategorier.cs" />
     <Compile Include="Podcaster.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +84,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="PL\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
