@@ -18,16 +18,6 @@ namespace ProjectSharp
         public void SetCategoryName(string name)
         {
             Name = name;
-        }
-
-
-
-
-
-
-
-
-
-        
+        }        
     }
 }
