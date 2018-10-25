@@ -35,7 +35,7 @@ namespace ProjectSharp.BLL
         private void SetTitle(XDocument Document)
         {
             XElement Element = Document.Element("channel");
-            Title = Element.Element("title").Value;
+            Title = Document.Root.Element("channel").Element("title").Value;
         }
 
         private void AddEpisodes(XDocument Document)
