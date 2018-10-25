@@ -12,7 +12,7 @@ namespace ProjectSharp.BLL
     {
         List<Episode> Episodes = new List<Episode>();
         public string Title { get; set; }
-        public int EpisodeCount { get; set; }
+        public int EpisodeCount { get; set; } 
         public Podcasts(XDocument Document)
         {
             AddEpisodes(Document);
@@ -34,14 +34,11 @@ namespace ProjectSharp.BLL
 
         private void SetTitle(XDocument Document)
         {
-            XElement Element = Document.Element("channel");
             Title = Document.Root.Element("channel").Element("title").Value;
         }
 
         private void AddEpisodes(XDocument Document)
-        {
-            
-            
+        {          
             foreach (var i in Document.Descendants("item"))
             {
                 EpisodeCount++;
