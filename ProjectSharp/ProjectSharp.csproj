@@ -51,6 +51,7 @@
     <Compile Include="BLL\Episode.cs" />
     <Compile Include="BLL\PodcastList.cs" />
     <Compile Include="BLL\Podcasts.cs" />
+    <Compile Include="BLL\Url.cs" />
     <Compile Include="DAL\FileHandler.cs" />
     <Compile Include="Podcaster.cs">
       <SubType>Form</SubType>
@@ -60,6 +61,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validering.cs" />
     <EmbeddedResource Include="Podcaster.resx">
       <DependentUpon>Podcaster.cs</DependentUpon>
     </EmbeddedResource>

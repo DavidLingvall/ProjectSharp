@@ -32,5 +32,12 @@ namespace ProjectSharp.DAL
             XDocument Document = XDocument.Parse(Uri);
             return Document; 
         }
+
+        public async Task<XDocument> DownloadFeed(string url)
+        {
+            var XmlDocument = await Task.Run(() => XmlDocumentOfFeed(DownloadUrlFeed(url)));
+            return XmlDocument;
+        }
+        
     }
 }
