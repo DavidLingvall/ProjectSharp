@@ -8,15 +8,23 @@ namespace ProjectSharp
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
+        static Form1 form;
+        
+
         [STAThread]
         static void Main()
         {
+            AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            form = new Form1();
+            Application.Run(form);
         }
+
+        static void OnProcessExit(object sender, EventArgs e)
+        {
+            form.Categories.WriteListToFile();    
+        }
+
     }
 }
