@@ -15,8 +15,8 @@ namespace ProjectSharp
 {
     public partial class Form1 : Form
     {
-        FileHandler FileHandler = new FileHandler();
-        PodcastList PodcastList = new PodcastList();
+        public FileHandler FileHandler;
+        PodcastList PodcastList; 
         public Form1()
         {
             InitializeComponent();
@@ -24,13 +24,29 @@ namespace ProjectSharp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            FileHandler = new FileHandler();
+            PodcastList = new PodcastList();
+            InitiateList();
+            
+            UpdatePodFeed();
+
             var ListViewItem = new ListViewItem();
             string[] KategoriLista = new string[] { "Mystery", "Humor", "Documentury" };
             foreach (var x in KategoriLista)
             {
                 LvCategory.Items.Add(x);
+            }  
+        }
+        private void InitiateList()
+        {
+            FileHandler.GetFeed();
+            foreach (var feed in FileHandler.SavedFeeds)
+            {
+                string Uri = FileHandler.DownloadUrlFeed(feed.url);
+                XDocument Document = FileHandler.XmlDocumentOfFeed(Uri);
+                PodcastList.PodList.Add(new Podcasts(Document));
             }
-            
+
         }
 
         private void LvCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -54,7 +70,7 @@ namespace ProjectSharp
         private void UpdatePodFeed()
         {
             LvFeed.Items.Clear();
-            foreach (var item in PodcastList)
+            foreach (var item in PodcastList.PodList)
             {
                 LvFeed.Items.Add(item.ToListViewItem());
             }
@@ -63,11 +79,11 @@ namespace ProjectSharp
         private void BtnAddFeed_Click(object sender, EventArgs e)
         {
             string Url = TbUrl.Text;
-            string Uri = FileHandler.DownloadUrlFeed(Url);
-            XDocument Document = FileHandler.XmlDocumentOfFeed(Uri);
-
-            PodcastList.Add(new Podcasts(Document));
-            UpdatePodFeed();          
+            if(Validering.TryParseFeed(Url))
+            {
+                FileHandler.SavedFeeds.Add(new RssUrl(Url));
+                //Task.Run(() => FileHandler.DownloadFeed(Url));
+            }
         }
     }
 }

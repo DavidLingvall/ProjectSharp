@@ -1,16 +1,20 @@
-﻿using System;
+﻿using ProjectSharp.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ProjectSharp.BLL
 {
-    class PodcastList : List<Podcasts>
+    class PodcastList
     {
+        public List<Podcasts> PodList = new List<Podcasts>();
+
         public void OrderByName()
         {
-            this.OrderBy(P => P.Title);
+            PodList.OrderBy(P => P.Title);
         }
     }
 }

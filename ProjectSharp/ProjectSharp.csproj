@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,7 +52,7 @@
     <Compile Include="BLL\Episode.cs" />
     <Compile Include="BLL\PodcastList.cs" />
     <Compile Include="BLL\Podcasts.cs" />
-    <Compile Include="BLL\Url.cs" />
+    <Compile Include="DAL\RssUrl.cs" />
     <Compile Include="DAL\FileHandler.cs" />
     <Compile Include="Podcaster.cs">
       <SubType>Form</SubType>
