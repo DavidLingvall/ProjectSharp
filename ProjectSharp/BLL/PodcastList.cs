@@ -16,5 +16,25 @@ namespace ProjectSharp.BLL
         {
             PodList.OrderBy(P => P.Title);
         }
+        public bool UrlExist(string url)
+        {
+            bool Found = false;
+
+            if (PodList == null)
+            {
+                Found = false;
+            }
+            else
+            {
+                foreach (var pod in PodList)
+                {
+                    if (pod.Url == url)
+                    {
+                        Found = true;
+                    }
+                }
+            }         
+            return Found;
+        }
     }
 }

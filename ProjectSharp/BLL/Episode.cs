@@ -15,10 +15,12 @@ namespace ProjectSharp.BLL
         
         public ListViewItem ToListViewItem()
         {
-            return new ListViewItem(new[] {
-                Title,
-                Description
+            ListViewItem item = new ListViewItem(new[] {
+                Title
             });
+            item.Tag = this;
+
+            return item;
         }
     }
 }

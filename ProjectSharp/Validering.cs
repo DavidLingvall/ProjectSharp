@@ -26,7 +26,7 @@ namespace ProjectSharp
             }
             catch (Exception)
             {
-                MessageBox.Show("Ogiltig Rss feed");
+                MessageBox.Show("Ogiltig Rss feed", "Höredu Du!");
                 return false;
             }
         }

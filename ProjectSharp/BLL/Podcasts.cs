@@ -10,13 +10,15 @@ namespace ProjectSharp.BLL
 {
     class Podcasts
     {
-        List<Episode> Episodes = new List<Episode>();
+        public List<Episode> Episodes = new List<Episode>();
         public string Title { get; set; }
+        public string Url { get; set; }
         public int EpisodeCount { get; set; } 
-        public Podcasts(XDocument Document)
+        public Podcasts(XDocument Document, string Url)
         {
             AddEpisodes(Document);
             SetTitle(Document);
+            this.Url = Url;
         }
 
         public void OrderEpisodesByDate()
@@ -26,17 +28,19 @@ namespace ProjectSharp.BLL
 
         public ListViewItem ToListViewItem()
         {
-            return new ListViewItem(new[] {
-            EpisodeCount.ToString(),
-            Title
+            ListViewItem item = new ListViewItem( new[] {
+                EpisodeCount.ToString(),
+                Title
             });
+
+            item.Tag = this;
+            return item;
         }
 
         private void SetTitle(XDocument Document)
         {
             Title = Document.Root.Element("channel").Element("title").Value;
         }
-
         private void AddEpisodes(XDocument Document)
         {          
             foreach (var i in Document.Descendants("item"))

@@ -11,7 +11,6 @@ namespace ProjectSharp.DAL
     public class RssUrl : ISerializable
     {
         public string url { get; set; }
-        public string urlId { get; set; }
 
         public RssUrl()
         {
@@ -24,12 +23,10 @@ namespace ProjectSharp.DAL
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("urlId", urlId);
             info.AddValue("url", url);
         }
         public RssUrl(SerializationInfo info, StreamingContext ctxt)
         {
-            urlId = (string)info.GetValue("urlId", typeof(string));
             url = (string)info.GetValue("url", typeof(string));
         }
     }

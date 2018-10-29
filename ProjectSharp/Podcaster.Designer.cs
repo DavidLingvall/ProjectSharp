@@ -59,7 +59,7 @@
             this.tabControl1.Controls.Add(this.Kategorier);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(388, 386);
@@ -78,9 +78,9 @@
             this.Podcasts.Controls.Add(this.CbCategory);
             this.Podcasts.Controls.Add(this.LvFeed);
             this.Podcasts.Location = new System.Drawing.Point(4, 22);
-            this.Podcasts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Podcasts.Margin = new System.Windows.Forms.Padding(2);
             this.Podcasts.Name = "Podcasts";
-            this.Podcasts.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Podcasts.Padding = new System.Windows.Forms.Padding(2);
             this.Podcasts.Size = new System.Drawing.Size(380, 360);
             this.Podcasts.TabIndex = 0;
             this.Podcasts.Text = "Podcasts";
@@ -89,7 +89,7 @@
             // 
             this.CbUpdateInterval.FormattingEnabled = true;
             this.CbUpdateInterval.Location = new System.Drawing.Point(237, 153);
-            this.CbUpdateInterval.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CbUpdateInterval.Margin = new System.Windows.Forms.Padding(2);
             this.CbUpdateInterval.Name = "CbUpdateInterval";
             this.CbUpdateInterval.Size = new System.Drawing.Size(137, 21);
             this.CbUpdateInterval.TabIndex = 8;
@@ -97,7 +97,7 @@
             // TbDescription
             // 
             this.TbDescription.Location = new System.Drawing.Point(237, 177);
-            this.TbDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TbDescription.Margin = new System.Windows.Forms.Padding(2);
             this.TbDescription.Multiline = true;
             this.TbDescription.Name = "TbDescription";
             this.TbDescription.Size = new System.Drawing.Size(137, 177);
@@ -116,28 +116,32 @@
             // LvEpisodes
             // 
             this.LvEpisodes.Location = new System.Drawing.Point(4, 177);
-            this.LvEpisodes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LvEpisodes.Margin = new System.Windows.Forms.Padding(2);
+            this.LvEpisodes.MultiSelect = false;
             this.LvEpisodes.Name = "LvEpisodes";
             this.LvEpisodes.Size = new System.Drawing.Size(229, 177);
             this.LvEpisodes.TabIndex = 5;
             this.LvEpisodes.UseCompatibleStateImageBehavior = false;
+            this.LvEpisodes.View = System.Windows.Forms.View.List;
+            this.LvEpisodes.SelectedIndexChanged += new System.EventHandler(this.LvEpisodes_SelectedIndexChanged);
             // 
             // BtnRemoveFeed
             // 
             this.BtnRemoveFeed.Location = new System.Drawing.Point(165, 151);
-            this.BtnRemoveFeed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnRemoveFeed.Margin = new System.Windows.Forms.Padding(2);
             this.BtnRemoveFeed.Name = "BtnRemoveFeed";
-            this.BtnRemoveFeed.Size = new System.Drawing.Size(68, 19);
+            this.BtnRemoveFeed.Size = new System.Drawing.Size(68, 22);
             this.BtnRemoveFeed.TabIndex = 4;
             this.BtnRemoveFeed.Text = "Ta bort";
             this.BtnRemoveFeed.UseVisualStyleBackColor = true;
+            this.BtnRemoveFeed.Click += new System.EventHandler(this.BtnRemoveFeed_Click);
             // 
             // BtnAddFeed
             // 
             this.BtnAddFeed.Location = new System.Drawing.Point(93, 151);
-            this.BtnAddFeed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnAddFeed.Margin = new System.Windows.Forms.Padding(2);
             this.BtnAddFeed.Name = "BtnAddFeed";
-            this.BtnAddFeed.Size = new System.Drawing.Size(68, 19);
+            this.BtnAddFeed.Size = new System.Drawing.Size(68, 22);
             this.BtnAddFeed.TabIndex = 3;
             this.BtnAddFeed.Text = "Lägg till";
             this.BtnAddFeed.UseVisualStyleBackColor = true;
@@ -146,17 +150,18 @@
             // TbUrl
             // 
             this.TbUrl.Location = new System.Drawing.Point(4, 128);
-            this.TbUrl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TbUrl.Margin = new System.Windows.Forms.Padding(2);
             this.TbUrl.Name = "TbUrl";
             this.TbUrl.Size = new System.Drawing.Size(231, 20);
             this.TbUrl.TabIndex = 2;
-            this.TbUrl.Text = "http://";
+            this.TbUrl.Text = "http://...";
+            this.TbUrl.Enter += new System.EventHandler(this.TbUrl_Enter);
             // 
             // CbCategory
             // 
             this.CbCategory.FormattingEnabled = true;
             this.CbCategory.Location = new System.Drawing.Point(237, 128);
-            this.CbCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CbCategory.Margin = new System.Windows.Forms.Padding(2);
             this.CbCategory.Name = "CbCategory";
             this.CbCategory.Size = new System.Drawing.Size(137, 21);
             this.CbCategory.TabIndex = 1;
@@ -168,33 +173,36 @@
             this.Title,
             this.Interval,
             this.Category});
+            this.LvFeed.FullRowSelect = true;
             this.LvFeed.Location = new System.Drawing.Point(6, 5);
-            this.LvFeed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LvFeed.Margin = new System.Windows.Forms.Padding(2);
+            this.LvFeed.MultiSelect = false;
             this.LvFeed.Name = "LvFeed";
             this.LvFeed.Size = new System.Drawing.Size(369, 119);
             this.LvFeed.TabIndex = 0;
             this.LvFeed.UseCompatibleStateImageBehavior = false;
             this.LvFeed.View = System.Windows.Forms.View.Details;
+            this.LvFeed.SelectedIndexChanged += new System.EventHandler(this.LvFeed_SelectedIndexChanged);
             // 
             // Episodes
             // 
             this.Episodes.Text = "Avsnitt";
-            this.Episodes.Width = 50;
+            this.Episodes.Width = 40;
             // 
             // Title
             // 
             this.Title.Text = "Titel";
-            this.Title.Width = 130;
+            this.Title.Width = 125;
             // 
             // Interval
             // 
             this.Interval.Text = "Frekvens";
-            this.Interval.Width = 100;
+            this.Interval.Width = 92;
             // 
             // Category
             // 
             this.Category.Text = "Kategori";
-            this.Category.Width = 103;
+            this.Category.Width = 100;
             // 
             // Kategorier
             // 
@@ -204,9 +212,9 @@
             this.Kategorier.Controls.Add(this.BtnAddCategory);
             this.Kategorier.Controls.Add(this.LvCategory);
             this.Kategorier.Location = new System.Drawing.Point(4, 22);
-            this.Kategorier.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Kategorier.Margin = new System.Windows.Forms.Padding(2);
             this.Kategorier.Name = "Kategorier";
-            this.Kategorier.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Kategorier.Padding = new System.Windows.Forms.Padding(2);
             this.Kategorier.Size = new System.Drawing.Size(380, 360);
             this.Kategorier.TabIndex = 1;
             this.Kategorier.Text = "Kategorier";
@@ -214,7 +222,7 @@
             // TbAddCategory
             // 
             this.TbAddCategory.Location = new System.Drawing.Point(6, 163);
-            this.TbAddCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TbAddCategory.Margin = new System.Windows.Forms.Padding(2);
             this.TbAddCategory.Name = "TbAddCategory";
             this.TbAddCategory.Size = new System.Drawing.Size(103, 20);
             this.TbAddCategory.TabIndex = 12;
@@ -222,7 +230,7 @@
             // BtnRemoveCategory
             // 
             this.BtnRemoveCategory.Location = new System.Drawing.Point(304, 163);
-            this.BtnRemoveCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnRemoveCategory.Margin = new System.Windows.Forms.Padding(2);
             this.BtnRemoveCategory.Name = "BtnRemoveCategory";
             this.BtnRemoveCategory.Size = new System.Drawing.Size(68, 19);
             this.BtnRemoveCategory.TabIndex = 11;
@@ -233,7 +241,7 @@
             // BtnAddCategory
             // 
             this.BtnAddCategory.Location = new System.Drawing.Point(230, 163);
-            this.BtnAddCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnAddCategory.Margin = new System.Windows.Forms.Padding(2);
             this.BtnAddCategory.Name = "BtnAddCategory";
             this.BtnAddCategory.Size = new System.Drawing.Size(68, 19);
             this.BtnAddCategory.TabIndex = 10;
@@ -244,12 +252,11 @@
             // LvCategory
             // 
             this.LvCategory.Location = new System.Drawing.Point(4, 5);
-            this.LvCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LvCategory.Margin = new System.Windows.Forms.Padding(2);
             this.LvCategory.Name = "LvCategory";
             this.LvCategory.Size = new System.Drawing.Size(368, 154);
             this.LvCategory.TabIndex = 7;
             this.LvCategory.UseCompatibleStateImageBehavior = false;
-            this.LvCategory.SelectedIndexChanged += new System.EventHandler(this.LvCategory_SelectedIndexChanged);
             // 
             // Form1
             // 
@@ -257,7 +264,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(388, 386);
             this.Controls.Add(this.tabControl1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

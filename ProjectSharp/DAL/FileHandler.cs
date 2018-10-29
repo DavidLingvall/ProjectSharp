@@ -45,7 +45,6 @@ namespace ProjectSharp.DAL
 
         public void SaveFeed()
         {
-
             using (Stream fs = new FileStream("RssFeed.xml",
             FileMode.Create, FileAccess.Write, FileShare.None))
             {
@@ -62,6 +61,5 @@ namespace ProjectSharp.DAL
                 SavedFeeds = (List<RssUrl>)serializer.Deserialize(fs);
             }
         }
-        
     }
 }
