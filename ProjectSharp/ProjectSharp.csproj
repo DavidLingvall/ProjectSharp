@@ -48,7 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\Category.cs" />
-    <Compile Include="BLL\CategoryList.cs" />
     <Compile Include="BLL\Episode.cs" />
     <Compile Include="BLL\PodcastList.cs" />
     <Compile Include="BLL\Podcasts.cs" />

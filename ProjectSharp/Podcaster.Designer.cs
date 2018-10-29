@@ -226,6 +226,7 @@
             this.TbAddCategory.Name = "TbAddCategory";
             this.TbAddCategory.Size = new System.Drawing.Size(103, 20);
             this.TbAddCategory.TabIndex = 12;
+            this.TbAddCategory.TextChanged += new System.EventHandler(this.TbAddCategory_TextChanged);
             // 
             // BtnRemoveCategory
             // 
@@ -257,6 +258,8 @@
             this.LvCategory.Size = new System.Drawing.Size(368, 154);
             this.LvCategory.TabIndex = 7;
             this.LvCategory.UseCompatibleStateImageBehavior = false;
+            this.LvCategory.View = System.Windows.Forms.View.List;
+            this.LvCategory.SelectedIndexChanged += new System.EventHandler(this.LvCategory_SelectedIndexChanged);
             // 
             // Form1
             // 

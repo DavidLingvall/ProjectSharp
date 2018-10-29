@@ -15,8 +15,10 @@ namespace ProjectSharp
 {
     public partial class Form1 : Form
     {
-        public FileHandler FileHandler;
-        PodcastList PodcastList;
+        public Category Categories = new Category();
+        FileHandler FileHandler = new FileHandler();
+        PodcastList PodcastList = new PodcastList();
+
         public Form1()
         {
             InitializeComponent();
@@ -31,11 +33,33 @@ namespace ProjectSharp
             UpdatePodFeed();
 
             var ListViewItem = new ListViewItem();
-            string[] KategoriLista = new string[] { "Mystery", "Humor", "Documentury" };
-            foreach (var x in KategoriLista)
+            Categories.ReadFileToList();
+            UpdateListView();
+            UpdateCategoryCombobox();
+
+        }
+
+        private void UpdateListView()
+        {
+            foreach (var Category in Categories.CategoryList)
             {
-                LvCategory.Items.Add(x);
-            }  
+                if (Category.Name != null)
+                {
+                    LvCategory.Items.Add(Category.Name);
+                }                  
+            }
+        }
+
+        private void UpdateCategoryCombobox()
+        {
+            CbCategory.Items.Clear();
+            foreach (var Category in Categories.CategoryList)
+            {
+                if (Category.Name != null)
+                {
+                    CbCategory.Items.Add(Category.Name);
+                }
+            }
         }
         private void InitiateList()
         {
@@ -50,14 +74,20 @@ namespace ProjectSharp
         }
         private void BtnAddCategory_Click(object sender, EventArgs e)
         {
+            Categories.AddToList(new Category(TbAddCategory.Text));
             LvCategory.Items.Add(TbAddCategory.Text);
+            UpdateCategoryCombobox();
         }
 
         private void BtnRemoveCategory_Click(object sender, EventArgs e)
         {
             foreach (ListViewItem selectedItem in LvCategory.SelectedItems)
             {
+                string ChosenCategory = selectedItem.Text;
+                Categories.RemoveFromList(ChosenCategory);
                 LvCategory.Items.Remove(selectedItem);
+                TbAddCategory.Clear();
+                UpdateCategoryCombobox();
             }
         }
         private async Task UpdatePodList(string Url)
