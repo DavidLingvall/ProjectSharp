@@ -52,13 +52,14 @@ namespace ProjectSharp
             {                
                 foreach(var Category in CategoryList)
                 {
-                    sw.WriteLine(Category.Name);
+                    sw.WriteLine(Category.Name); 
                 }
             }
         }
 
         public void ReadFileToList()
         {
+
             using (StreamReader sr = new StreamReader(@"Categories.txt"))
             {
                 string s;
