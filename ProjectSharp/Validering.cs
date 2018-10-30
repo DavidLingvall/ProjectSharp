@@ -7,6 +7,7 @@ using System.ServiceModel.Syndication;
 using System.Xml;
 using System.Diagnostics;
 using System.Windows.Forms;
+using ProjectSharp.BLL;
 
 namespace ProjectSharp
 {
@@ -29,6 +30,18 @@ namespace ProjectSharp
                 MessageBox.Show("Ogiltig Rss feed", "Höredu Du!");
                 return false;
             }
+        }
+        public static bool CheckForItem(string Category, PodcastList List)
+        {
+            bool found = false;
+            foreach (var pod in List.PodList)
+            {
+                if(pod.Category == Category)
+                {
+                    found = true;
+                }
+            }
+            return found;
         }
 
     }

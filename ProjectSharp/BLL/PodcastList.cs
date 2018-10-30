@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace ProjectSharp.BLL
 {
-    class PodcastList
+    public class PodcastList
     {
         public List<Podcasts> PodList = new List<Podcasts>();
 

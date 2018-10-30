@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProjectSharp.Interfaces;
 
 namespace ProjectSharp.BLL
 {
-    public class Episode
+    public class Episode : IList
     {
         public string Title { get; set; }
         public string Description { get; set; }

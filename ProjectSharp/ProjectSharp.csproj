@@ -51,8 +51,10 @@
     <Compile Include="BLL\Episode.cs" />
     <Compile Include="BLL\PodcastList.cs" />
     <Compile Include="BLL\Podcasts.cs" />
+    <Compile Include="BLL\VirtualCategory.cs" />
     <Compile Include="DAL\RssUrl.cs" />
     <Compile Include="DAL\FileHandler.cs" />
+    <Compile Include="Interfaces\IList.cs" />
     <Compile Include="Podcaster.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,7 +91,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\" />
     <Folder Include="PL\" />
   </ItemGroup>
   <ItemGroup>

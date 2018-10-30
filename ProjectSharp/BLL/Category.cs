@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectSharp.BLL;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ProjectSharp
 {
-    public class Category
+    public class Category : VirtualCategory
     {
-        public List<Category> CategoryList = new List<Category>();
+        
         public string Name { get; set; }
 
         public Category()
@@ -20,8 +21,12 @@ namespace ProjectSharp
         public Category(string name)
         {
             Name = name;
-        } 
-        
+        }
+        public override void OrderByName()
+        {
+            CategoryList.OrderBy(C => C.Name);
+        }
+
         public void AddToList(Category NewCategory)
         {
             CategoryList.Add(NewCategory);

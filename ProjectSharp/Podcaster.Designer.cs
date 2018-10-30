@@ -51,6 +51,11 @@
             this.BtnAddCategory = new System.Windows.Forms.Button();
             this.LvCategory = new System.Windows.Forms.ListView();
             this.btnChange = new System.Windows.Forms.Button();
+            this.LvSortedCategories = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.Podcasts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -231,6 +236,7 @@
             // Kategorier
             // 
             this.Kategorier.BackColor = System.Drawing.Color.PeachPuff;
+            this.Kategorier.Controls.Add(this.LvSortedCategories);
             this.Kategorier.Controls.Add(this.TbAddCategory);
             this.Kategorier.Controls.Add(this.BtnRemoveCategory);
             this.Kategorier.Controls.Add(this.BtnAddCategory);
@@ -282,6 +288,7 @@
             this.LvCategory.TabIndex = 7;
             this.LvCategory.UseCompatibleStateImageBehavior = false;
             this.LvCategory.View = System.Windows.Forms.View.List;
+            this.LvCategory.SelectedIndexChanged += new System.EventHandler(this.LvCategory_SelectedIndexChanged);
             // 
             // btnChange
             // 
@@ -293,6 +300,43 @@
             this.btnChange.Text = "Ändra";
             this.btnChange.UseVisualStyleBackColor = true;
             this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
+            // 
+            // LvSortedCategories
+            // 
+            this.LvSortedCategories.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.LvSortedCategories.FullRowSelect = true;
+            this.LvSortedCategories.Location = new System.Drawing.Point(8, 264);
+            this.LvSortedCategories.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.LvSortedCategories.MultiSelect = false;
+            this.LvSortedCategories.Name = "LvSortedCategories";
+            this.LvSortedCategories.Size = new System.Drawing.Size(491, 175);
+            this.LvSortedCategories.TabIndex = 13;
+            this.LvSortedCategories.UseCompatibleStateImageBehavior = false;
+            this.LvSortedCategories.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Avsnitt";
+            this.columnHeader1.Width = 40;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Titel";
+            this.columnHeader2.Width = 125;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Frekvens";
+            this.columnHeader3.Width = 92;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Kategori";
+            this.columnHeader4.Width = 100;
             // 
             // Form1
             // 
@@ -340,6 +384,11 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnChange;
+        private System.Windows.Forms.ListView LvSortedCategories;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }
 

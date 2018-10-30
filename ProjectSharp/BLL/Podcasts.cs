@@ -1,4 +1,5 @@
 ﻿using ProjectSharp.DAL;
+using ProjectSharp.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Xml.Linq;
 
 namespace ProjectSharp.BLL
 {
-    public class Podcasts
+    public class Podcasts :IList
     {
         public List<Episode> Episodes = new List<Episode>();
         public string Title { get; set; }
@@ -29,11 +30,15 @@ namespace ProjectSharp.BLL
             this.Url = Url;
             this.Interval = Interval;
             this.Category = Category;
-            Timer(GetInterval(Interval));
         }
         public Podcasts()
         {
 
+        }
+        Form1 form;
+        public void podExperiment(Form1 Podcaster)
+        {
+            form = Podcaster;
         }
 
         public void OrderEpisodesByDate()
@@ -59,7 +64,8 @@ namespace ProjectSharp.BLL
             Title = Document.Root.Element("channel").Element("title").Value;
         }
         private void AddEpisodes(XDocument Document)
-        {          
+        {
+            EpisodeCount = 0;
             foreach (var i in Document.Descendants("item"))
             {
                 EpisodeCount++;
@@ -81,20 +87,24 @@ namespace ProjectSharp.BLL
             }
             return Count;
         }
+        public void CallTimer()
+        {
+            Timer(GetInterval(Interval));
+        }
 
         private void Timer(int interval)
         {
-            aTimer = new System.Timers.Timer(interval * 600);
+            aTimer = new System.Timers.Timer(interval * 1000);
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             aTimer.AutoReset = true;
             aTimer.Enabled = true;
         }
         private async void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
-            
             var doc = await fh.GetFeedList(Url);
             Episodes.Clear();
             AddEpisodes(doc);
+            form.UpdatePodFeed();           
         }
 
         private int GetInterval(string interval)
@@ -115,7 +125,7 @@ namespace ProjectSharp.BLL
             {
                 return 60;
             }
-            return 10000;
+            return 1000;
         }
 
     }

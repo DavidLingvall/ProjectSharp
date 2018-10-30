@@ -31,14 +31,25 @@ namespace ProjectSharp
             FileHandler = new FileHandler();
             PodcastList = new PodcastList();
             InitiateList();
-            
-            UpdatePodFeed();
+
+            StartInterval();
+
             var ListViewItem = new ListViewItem();
             Categories.ReadFileToList();
             UpdateListView();
             UpdateCategoryCombobox();
 
             FillInterval();
+        }
+
+        private void StartInterval()
+        {
+            foreach (var pod in PodcastList.PodList)
+            {
+                pod.CallTimer();
+                pod.podExperiment(this);
+            }
+            UpdatePodFeed();
         }
 
         private void UpdateListView()
@@ -72,17 +83,22 @@ namespace ProjectSharp
                 XDocument Document = FileHandler.XmlDocumentOfFeed(Uri);
                 PodcastList.PodList.Add(new Podcasts(Document, feed.url, feed.Interval, feed.Category));
             }
-
         }
         private void BtnAddCategory_Click(object sender, EventArgs e)
         {
             Categories.AddToList(new Category(TbAddCategory.Text));
-            LvCategory.Items.Add(TbAddCategory.Text);
+            Categories.OrderByName();
+            LvCategory.Items.Add(TbAddCategory.Text);            
             UpdateCategoryCombobox();
         }
 
         private void BtnRemoveCategory_Click(object sender, EventArgs e)
         {
+            if (Validering.CheckForItem(LvCategory.SelectedItems[0].Text, PodcastList))
+            {
+                MessageBox.Show("Det går inte att ta bort en kategori som har podcast");
+                return;
+            }
             foreach (ListViewItem selectedItem in LvCategory.SelectedItems)
             {
                 string ChosenCategory = selectedItem.Text;
@@ -104,8 +120,19 @@ namespace ProjectSharp
             FileHandler.SavedFeeds.Add(new RssUrl(Url, Interval, Category));
             UpdatePodFeed();
         }
-
-        private void UpdatePodFeed()
+        private void ChangeRssUrl()
+        {
+            Podcasts pod = (Podcasts)LvFeed.SelectedItems[0].Tag;
+            foreach (var feed in FileHandler.SavedFeeds)
+            {
+                if (pod.Url == feed.url)
+                {
+                    feed.Interval = CbUpdateInterval.Text;
+                    feed.Category = CbCategory.Text;
+                }
+            }
+        }
+        public void UpdatePodFeed()
         {
             if (LvFeed.InvokeRequired)
             {
@@ -122,6 +149,7 @@ namespace ProjectSharp
                 AddToPodFeed(pod);
             }
         }
+
         private void AddToPodFeed(Podcasts pod)
         {
             if (LvFeed.InvokeRequired)
@@ -148,6 +176,7 @@ namespace ProjectSharp
             {               
                 Task.Run(() => UpdatePodList(Url, Category, Interval));
             }
+            StartInterval();
         }
 
         private void BtnRemoveFeed_Click(object sender, EventArgs e)
@@ -174,15 +203,19 @@ namespace ProjectSharp
         private void LvFeed_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (LvFeed.SelectedItems.Count == 1)
-            {               
-                Podcasts pod = (Podcasts)LvFeed.SelectedItems[0].Tag;
-                EpisodesColumn.Text = pod.Title;
-                LvEpisodes.Items.Clear();
-                foreach (var Episode in pod.Episodes)
-                {
-                    LvEpisodes.Items.Add(Episode.ToListViewItem());
-                }
+            {
+                UpdateLvEpisode();
             }         
+        }
+        private void UpdateLvEpisode()
+        {
+            Podcasts pod = (Podcasts)LvFeed.SelectedItems[0].Tag;
+            EpisodesColumn.Text = pod.Title;
+            LvEpisodes.Items.Clear();
+            foreach (var Episode in pod.Episodes)
+            {
+                LvEpisodes.Items.Add(Episode.ToListViewItem());
+            }
         }
 
         private void LvEpisodes_SelectedIndexChanged(object sender, EventArgs e)
@@ -224,7 +257,26 @@ namespace ProjectSharp
                 {
                     pod.Category = CbCategory.Text;
                 }
-                UpdatePodFeed();
+                ChangeRssUrl();
+                StartInterval();
+            }
+        }
+
+        private void LvCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LvSortedCategories.Items.Clear();
+            if (LvCategory.SelectedItems.Count == 1)
+            {
+                
+                string ChosenCategory = LvCategory.SelectedItems[0].Text;
+                var podcast = PodcastList
+                    .PodList
+                    .Where(s => s.Category == ChosenCategory)
+                    .ToList();
+                foreach(var x in podcast)
+                {
+                    LvSortedCategories.Items.Add(x.ToListViewItem());
+                }
             }
         }
     }

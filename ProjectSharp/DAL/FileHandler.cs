@@ -27,8 +27,15 @@ namespace ProjectSharp.DAL
 
         public string DownloadUrlFeed(string url)
         {
-            string Uri = WebClient.DownloadString(url);
-            return Uri;
+            try
+            {
+                string Uri = WebClient.DownloadString(url);
+                return Uri;
+            }
+            catch(Exception)
+            {
+                return "";
+            }
         }
 
         public XDocument XmlDocumentOfFeed(string Uri)
