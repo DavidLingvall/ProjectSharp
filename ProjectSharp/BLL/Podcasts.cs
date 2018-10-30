@@ -1,24 +1,39 @@
-﻿using System;
+﻿using ProjectSharp.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace ProjectSharp.BLL
 {
-    class Podcasts
+    public class Podcasts
     {
         public List<Episode> Episodes = new List<Episode>();
         public string Title { get; set; }
         public string Url { get; set; }
         public int EpisodeCount { get; set; } 
-        public Podcasts(XDocument Document, string Url)
+        public string Interval { get; set; }
+        public string Category { get; set; }
+
+        System.Timers.Timer aTimer;
+        FileHandler fh = new FileHandler();
+
+        public Podcasts(XDocument Document, string Url, string Interval, string Category)
         {
             AddEpisodes(Document);
             SetTitle(Document);
             this.Url = Url;
+            this.Interval = Interval;
+            this.Category = Category;
+            Timer(GetInterval(Interval));
+        }
+        public Podcasts()
+        {
+
         }
 
         public void OrderEpisodesByDate()
@@ -30,7 +45,9 @@ namespace ProjectSharp.BLL
         {
             ListViewItem item = new ListViewItem( new[] {
                 EpisodeCount.ToString(),
-                Title
+                Title,
+                Interval,
+                Category
             });
 
             item.Tag = this;
@@ -55,6 +72,51 @@ namespace ProjectSharp.BLL
                 Episodes.Add(pod);
             }
         }
-        
+        public int CountEpisodes(XDocument Document)
+        {
+            int Count = 0;
+            foreach (var i in Document.Descendants("item"))
+            {
+                Count++;                
+            }
+            return Count;
+        }
+
+        private void Timer(int interval)
+        {
+            aTimer = new System.Timers.Timer(interval * 600);
+            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            aTimer.AutoReset = true;
+            aTimer.Enabled = true;
+        }
+        private async void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            
+            var doc = await fh.GetFeedList(Url);
+            Episodes.Clear();
+            AddEpisodes(doc);
+        }
+
+        private int GetInterval(string interval)
+        {
+            if (interval == "5 minuter")
+            {
+                return 5;
+            }
+            else if (interval == "15 minuter")
+            {
+                return 15;
+            }
+            else if (interval == "30 minuter")
+            {
+                return 30;
+            }
+            else if (interval == "60 minuter")
+            {
+                return 60;
+            }
+            return 10000;
+        }
+
     }
 }

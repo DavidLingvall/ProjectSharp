@@ -36,5 +36,28 @@ namespace ProjectSharp.BLL
             }         
             return Found;
         }
+        public int GetEpisodeCount(string url)
+        {         
+            foreach (var pod in PodList)
+            {
+                if (pod.Url == url)
+                {
+                    return pod.EpisodeCount;
+                }
+            }
+            return 0;
+        }
+
+        public Podcasts GetPodcast(string url)
+        {
+            foreach (var pod in PodList)
+            {
+                if (pod.Url == url)
+                {
+                    return pod;
+                }
+            }
+            return null;
+        }
     }
 }

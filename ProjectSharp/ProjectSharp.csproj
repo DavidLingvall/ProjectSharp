@@ -73,6 +73,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -90,6 +91,18 @@
   <ItemGroup>
     <Folder Include="Interfaces\" />
     <Folder Include="PL\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\imgs\clock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\imgs\icons8-alarm-clock-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\imgs\icons8-menu-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\imgs\icons8-time-24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

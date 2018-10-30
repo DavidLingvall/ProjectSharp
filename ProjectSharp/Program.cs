@@ -24,14 +24,8 @@ namespace ProjectSharp
 
         static void OnProcessExit(object sender, EventArgs e)
         {
-            form.Categories.WriteListToFile();    
-            form = new Form1();
-            Application.Run(form);
-        }
-        static void OnProcessExit(object sender, EventArgs e)
-        {
+            form.Categories.WriteListToFile();
             form.FileHandler.SaveFeed();
         }
-
     }
 }

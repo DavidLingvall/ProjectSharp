@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace ProjectSharp.BLL
 {
-    class Episode
+    public class Episode
     {
         public string Title { get; set; }
         public string Description { get; set; }

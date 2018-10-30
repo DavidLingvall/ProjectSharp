@@ -8,16 +8,18 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 using System.Xml.Linq;
+
 
 namespace ProjectSharp
 {
     public partial class Form1 : Form
     {
         public Category Categories = new Category();
-        FileHandler FileHandler = new FileHandler();
-        PodcastList PodcastList = new PodcastList();
+        public FileHandler FileHandler;
+        PodcastList PodcastList;
 
         public Form1()
         {
@@ -31,12 +33,12 @@ namespace ProjectSharp
             InitiateList();
             
             UpdatePodFeed();
-
             var ListViewItem = new ListViewItem();
             Categories.ReadFileToList();
             UpdateListView();
             UpdateCategoryCombobox();
 
+            FillInterval();
         }
 
         private void UpdateListView()
@@ -68,7 +70,7 @@ namespace ProjectSharp
             {
                 string Uri = FileHandler.DownloadUrlFeed(feed.url);
                 XDocument Document = FileHandler.XmlDocumentOfFeed(Uri);
-                PodcastList.PodList.Add(new Podcasts(Document, feed.url));
+                PodcastList.PodList.Add(new Podcasts(Document, feed.url, feed.Interval, feed.Category));
             }
 
         }
@@ -90,18 +92,19 @@ namespace ProjectSharp
                 UpdateCategoryCombobox();
             }
         }
-        private async Task UpdatePodList(string Url)
+        private async Task UpdatePodList(string Url, string Category, string Interval)
         {
             if (PodcastList.UrlExist(Url))
             {
                 MessageBox.Show("Feed med denna url finns redan i listan.");
                 return;
             }
-            var Document = await FileHandler.UpdateFeedList(Url);
-            PodcastList.PodList.Add(new Podcasts(Document, Url));
-            FileHandler.SavedFeeds.Add(new RssUrl(Url));
+            var Document = await FileHandler.GetFeedList(Url);
+            PodcastList.PodList.Add(new Podcasts(Document, Url,Interval,Category));
+            FileHandler.SavedFeeds.Add(new RssUrl(Url, Interval, Category));
             UpdatePodFeed();
         }
+
         private void UpdatePodFeed()
         {
             if (LvFeed.InvokeRequired)
@@ -138,9 +141,12 @@ namespace ProjectSharp
         private void BtnAddFeed_Click(object sender, EventArgs e)
         {
             string Url = TbUrl.Text;
+            string Interval = CbUpdateInterval.Text;
+            string Category = CbCategory.Text;
+
             if(Validering.TryParseFeed(Url))
             {               
-                Task.Run(() => UpdatePodList(Url));
+                Task.Run(() => UpdatePodList(Url, Category, Interval));
             }
         }
 
@@ -170,6 +176,7 @@ namespace ProjectSharp
             if (LvFeed.SelectedItems.Count == 1)
             {               
                 Podcasts pod = (Podcasts)LvFeed.SelectedItems[0].Tag;
+                EpisodesColumn.Text = pod.Title;
                 LvEpisodes.Items.Clear();
                 foreach (var Episode in pod.Episodes)
                 {
@@ -186,6 +193,38 @@ namespace ProjectSharp
                 episode = (Episode)LvEpisodes.SelectedItems[0].Tag;
                 TbDescription.Clear();
                 TbDescription.Text = episode.Description;
+            }
+        }
+        private void FillInterval()
+        {
+            CbUpdateInterval.Items.Add("5 minuter");
+            CbUpdateInterval.Items.Add("15 minuter");
+            CbUpdateInterval.Items.Add("30 minuter");
+            CbUpdateInterval.Items.Add("60 minuter");
+        }
+
+        private void btnChange_Click(object sender, EventArgs e)
+        {
+            if (LvFeed.SelectedItems.Count == 1)
+            {
+                Podcasts pod = (Podcasts)LvFeed.SelectedItems[0].Tag;
+                if (CbCategory.Text == "Kategori")
+                {
+                    MessageBox.Show("Ingen Kategori vald");
+                }
+                else
+                {
+                    pod.Interval = CbUpdateInterval.Text;
+                }
+                if (CbUpdateInterval.Text == "Frekvens")
+                {
+                    MessageBox.Show("Ingen frekvens vald");
+                }
+                else
+                {
+                    pod.Category = CbCategory.Text;
+                }
+                UpdatePodFeed();
             }
         }
     }

@@ -37,7 +37,7 @@ namespace ProjectSharp.DAL
             return Document; 
         }
 
-        public async Task<XDocument> UpdateFeedList(string url)
+        public async Task<XDocument> GetFeedList(string url)
         {
             var XmlDocument = await Task.Run(() => XmlDocumentOfFeed(DownloadUrlFeed(url)));
             return XmlDocument;
