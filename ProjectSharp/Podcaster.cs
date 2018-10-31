@@ -30,7 +30,7 @@ namespace ProjectSharp
         {
             FileHandler = new FileHandler();
             PodcastList = new PodcastList();
-            InitiateList();
+            InitiateList(); 
 
             StartInterval();
 
@@ -86,7 +86,16 @@ namespace ProjectSharp
         }
         private void BtnAddCategory_Click(object sender, EventArgs e)
         {
-            Categories.AddToList(new Category(TbAddCategory.Text));
+            string Category = TbAddCategory.Text;
+            if (!Validering.CheckCategoryInput(Category))
+            {
+                return;
+            }
+            if (Validering.CheckCategories(Category, Categories.CategoryList))
+            {
+                return;
+            }
+            Categories.AddToList(new Category(Category));
             Categories.OrderByName();
             LvCategory.Items.Add(TbAddCategory.Text);            
             UpdateCategoryCombobox();
@@ -94,19 +103,27 @@ namespace ProjectSharp
 
         private void BtnRemoveCategory_Click(object sender, EventArgs e)
         {
-            if (Validering.CheckForItem(LvCategory.SelectedItems[0].Text, PodcastList))
+            try
             {
-                MessageBox.Show("Det går inte att ta bort en kategori som har podcast");
-                return;
+                if (Validering.CheckForItem(LvCategory.SelectedItems[0].Text, PodcastList))
+                {
+                    MessageBox.Show("Det går inte att ta bort en kategori som har podcast");
+                    return;
+                }
+                foreach (ListViewItem selectedItem in LvCategory.SelectedItems)
+                {
+                    string ChosenCategory = selectedItem.Text;
+                    Categories.RemoveFromList(ChosenCategory);
+                    LvCategory.Items.Remove(selectedItem);
+                    TbAddCategory.Clear();
+                    UpdateCategoryCombobox();
+                }
             }
-            foreach (ListViewItem selectedItem in LvCategory.SelectedItems)
+            catch (ArgumentOutOfRangeException)
             {
-                string ChosenCategory = selectedItem.Text;
-                Categories.RemoveFromList(ChosenCategory);
-                LvCategory.Items.Remove(selectedItem);
-                TbAddCategory.Clear();
-                UpdateCategoryCombobox();
+                MessageBox.Show("Välj en kategori at ta bort");
             }
+            
         }
         private async Task UpdatePodList(string Url, string Category, string Interval)
         {
@@ -172,27 +189,39 @@ namespace ProjectSharp
             string Interval = CbUpdateInterval.Text;
             string Category = CbCategory.Text;
 
-            if(Validering.TryParseFeed(Url))
-            {               
-                Task.Run(() => UpdatePodList(Url, Category, Interval));
-            }
-            StartInterval();
+            if (!Validering.CheckStringComparison(Category, "Kategori")
+                    &&
+                !Validering.CheckStringComparison(Interval, "Frekvens"))
+            {
+                if (Validering.TryParseFeed(Url))
+                {
+                    Task.Run(() => UpdatePodList(Url, Category, Interval));
+                }
+                StartInterval();
+            }           
         }
 
         private void BtnRemoveFeed_Click(object sender, EventArgs e)
         {
-            Podcasts pod = (Podcasts)LvFeed.SelectedItems[0].Tag;
-            PodcastList.PodList.Remove(pod);
-            RssUrl tempRssFeed = new RssUrl();
-            foreach (var rssFeed in FileHandler.SavedFeeds)
+            try
             {
-                if (pod.Url == rssFeed.url)
+                Podcasts pod = (Podcasts)LvFeed.SelectedItems[0].Tag;
+                PodcastList.PodList.Remove(pod);
+                RssUrl tempRssFeed = new RssUrl();
+                foreach (var rssFeed in FileHandler.SavedFeeds)
                 {
-                    tempRssFeed = rssFeed;
+                    if (pod.Url == rssFeed.url)
+                    {
+                        tempRssFeed = rssFeed;
+                    }
                 }
+                FileHandler.SavedFeeds.Remove(tempRssFeed);
+                UpdatePodFeed();
             }
-            FileHandler.SavedFeeds.Remove(tempRssFeed);
-            UpdatePodFeed();
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Välj en podcast att ta bort");
+            }            
         }
 
         private void TbUrl_Enter(object sender, EventArgs e)
@@ -238,23 +267,16 @@ namespace ProjectSharp
 
         private void btnChange_Click(object sender, EventArgs e)
         {
+            string Interval = CbUpdateInterval.Text;
+            string Category = CbCategory.Text;
             if (LvFeed.SelectedItems.Count == 1)
             {
                 Podcasts pod = (Podcasts)LvFeed.SelectedItems[0].Tag;
-                if (CbCategory.Text == "Kategori")
-                {
-                    MessageBox.Show("Ingen Kategori vald");
-                }
-                else
+                if (!Validering.CheckStringComparison(Category, "Kategori") 
+                    && 
+                    !Validering.CheckStringComparison(Interval, "Frekvens"))                    
                 {
                     pod.Interval = CbUpdateInterval.Text;
-                }
-                if (CbUpdateInterval.Text == "Frekvens")
-                {
-                    MessageBox.Show("Ingen frekvens vald");
-                }
-                else
-                {
                     pod.Category = CbCategory.Text;
                 }
                 ChangeRssUrl();

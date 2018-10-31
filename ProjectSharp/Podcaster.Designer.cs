@@ -292,7 +292,7 @@
             // 
             // btnChange
             // 
-            this.btnChange.Location = new System.Drawing.Point(218, 188);
+            this.btnChange.Location = new System.Drawing.Point(218, 187);
             this.btnChange.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnChange.Name = "btnChange";
             this.btnChange.Size = new System.Drawing.Size(91, 27);

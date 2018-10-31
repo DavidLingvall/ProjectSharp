@@ -43,6 +43,39 @@ namespace ProjectSharp
             }
             return found;
         }
+        public static bool CheckStringComparison(string CbText, string CompText)
+        {
+            bool match = false;
+            if (CbText == CompText)
+            {
+                MessageBox.Show("Välj en " + CompText);
+                match = true;
+            }
+            return match;
+        }
+        public static bool CheckCategoryInput(string Category)
+        {
+            bool accept = true;
+            if (Category == "")
+            {
+                accept = false;
+                MessageBox.Show("Skriv in kategori");
+            }
+            return accept;
+        }
+        public static bool CheckCategories(string Category, List<Category> Categories)
+        {
+            bool found = false;
+            foreach (var c in Categories)
+            {
+                if (c.Name == Category)
+                {
+                    found = true;
+                    MessageBox.Show("Kategorin finns redan");
+                }
+            }
+            return found;
+        }
 
     }
 }

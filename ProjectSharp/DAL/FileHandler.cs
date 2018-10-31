@@ -52,7 +52,7 @@ namespace ProjectSharp.DAL
 
         public void SaveFeed()
         {
-            using (Stream fs = new FileStream("RssFeed.xml",
+            using (FileStream fs = new FileStream("RssFeed.xml",
             FileMode.Create, FileAccess.Write, FileShare.None))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(List<RssUrl>));

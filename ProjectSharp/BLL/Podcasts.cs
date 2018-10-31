@@ -94,7 +94,7 @@ namespace ProjectSharp.BLL
 
         private void Timer(int interval)
         {
-            aTimer = new System.Timers.Timer(interval * 1000);
+            aTimer = new System.Timers.Timer(interval * 60000);
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             aTimer.AutoReset = true;
             aTimer.Enabled = true;
